@@ -17,7 +17,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
-        android:foreground="@drawable/main_icon_250"
+        android:foreground="@drawable/ic_launcher"
         android:orientation="horizontal" />
 
     <EditText

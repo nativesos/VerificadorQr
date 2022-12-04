@@ -6,15 +6,20 @@
 package com.nativesos.verificadorqr.pages.dashboard;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,8 +29,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.nativesos.verificadorqr.R;
+import com.nativesos.verificadorqr.helper.ConexionSqliteHelper;
 import com.nativesos.verificadorqr.pages.history.History;
 import com.nativesos.verificadorqr.pages.qr.ScannerQr;
+import com.nativesos.verificadorqr.utility.Utility;
+
+import org.w3c.dom.Text;
 
 
 public class DashBoard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,10 +44,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
+    TextView textEntradas;
+    TextView textSalidas;
 
-
-    SharedPreferences userPreferences;
-    SharedPreferences.Editor editor;
 
 
 
@@ -48,8 +56,6 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        userPreferences = this.getPreferences(Context.MODE_PRIVATE);
-        editor = userPreferences.edit();
 
         navigationView = (NavigationView) findViewById(R.id.navigationView);
         app_bar = (Toolbar) findViewById(R.id.appBar);
@@ -58,6 +64,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+
+        textSalidas = (TextView) findViewById(R.id.textSalidas);
+        textEntradas = (TextView) findViewById(R.id.textEntradas);
 
 
         // Start Import Data Sellers
@@ -71,9 +80,30 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         actionBarDrawerToggle.syncState();
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
-
+        totalEntradasYSalidas();
     }
 
+
+    @Override
+    protected void onResume() {
+         final long PERIODO = 5000; // 60 segundos (60 * 1000 millisegundos)
+        Handler handler;
+        Runnable runnable;
+        super.onResume();
+
+
+        handler = new Handler();
+        runnable = new Runnable(){
+            @Override
+            public void run(){
+
+                totalEntradasYSalidas();
+                handler.postDelayed(this, PERIODO);
+
+            }
+        };
+        handler.postDelayed(runnable, PERIODO);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,6 +126,24 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         return false;
 
+    }
+
+
+    void totalEntradasYSalidas(){
+
+        ConexionSqliteHelper conn = new ConexionSqliteHelper(this, "bd_history", null, 1);
+
+        SQLiteDatabase db = conn.getReadableDatabase();
+        ContentValues values = new ContentValues();
+
+        //Consultamos los datos
+        Cursor entradas = db.rawQuery("SELECT * FROM " + Utility.TABLA_HISTORY , null);
+
+        Cursor salidas = db.rawQuery("SELECT * FROM " + Utility.TABLA_HISTORY + " WHERE " + Utility.DATE_OURSIDE +" like \"%:%\" ",null);
+
+
+        textEntradas.setText(String.valueOf(entradas.getCount()));
+        textSalidas.setText(String.valueOf(salidas.getCount()));
     }
 
 

@@ -18,28 +18,67 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/cardview_default_radius">
 
 
         <LinearLayout
-            android:layout_height="200dp"
-            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_width="100dp"
             android:layout_marginTop="100dp"
-            android:orientation="horizontal">
+            android:background="#9DB3B6"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Jho"
-                android:textColor="@color/black" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Jhowedfwefwe"
-                android:textColor="@color/black" />
+                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:text="Total Entradas"
+                android:textAlignment="center"
+                android:textColor="@color/white">
+            </TextView>
 
+            <TextView
+                android:id="@+id/textEntradas"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:text="50"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:textSize="45dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="120dp"
+            android:background="#D3D7EF"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:text="Total Salidas"
+                android:textAlignment="center"
+                android:textColor="@color/teal_700">
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/textSalidas"
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:text="50"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:textSize="45dp"
+                android:textColor="@color/teal_700">
+            </TextView>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

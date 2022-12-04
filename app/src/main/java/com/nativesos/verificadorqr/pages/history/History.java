@@ -119,7 +119,7 @@ public class History extends AppCompatActivity {
         textView.setPadding(10,5,10,5);
         textView.setBackgroundResource(R.color.white);
         textView.setTextSize(9);
-        textView.setMaxLines(2);
+        textView.setMaxLines(5);
         textView.setWidth(150);
         textView.setHeight(70);
         textView.setGravity(Gravity.CENTER);

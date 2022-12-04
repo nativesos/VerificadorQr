@@ -186,7 +186,7 @@ public class ScannerQr extends AppCompatActivity {
 
                             db.update(Utility.TABLA_HISTORY, values, Utility.ID +"=?" ,new String[]{id});
 
-                            Toast.makeText(this, "Hora de salida: " + id, Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Hora de salida: " + getHour(), Toast.LENGTH_LONG).show();
 
                         }else{
 

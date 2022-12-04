@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
 
-        android:foreground="@drawable/ic_qr_24"
+        android:foreground="@drawable/ic_launcher"
         android:orientation="horizontal" />
 
     <RelativeLayout
