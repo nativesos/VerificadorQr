@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">VerificadorQr</string>
+
+
+    <string name="login_text">LOGIN</string>
+
+    <string name="close">close</string>
+    <string name="open">open</string>
+
+
+    <string name="title_activity_dashboard">Dashboard</string>
+
+</resources>

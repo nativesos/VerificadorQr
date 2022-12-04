@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/main_icon_login"
+        android:layout_width="200dp"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:foreground="@drawable/main_icon_250"
+        android:orientation="horizontal" />
+
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/main_icon_login"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:hint="Correo:"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/emailLogin"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:hint="Password:"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/passwordLogin"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/login_text"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+
+</RelativeLayout>
