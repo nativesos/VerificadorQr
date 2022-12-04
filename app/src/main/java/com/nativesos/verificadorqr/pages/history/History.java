@@ -3,8 +3,11 @@ package com.nativesos.verificadorqr.pages.history;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +18,8 @@ import android.widget.TextView;
 
 import com.nativesos.verificadorqr.R;
 import com.nativesos.verificadorqr.helper.ConexionSqliteHelper;
+import com.nativesos.verificadorqr.pages.qr.ScannerQr;
+import com.nativesos.verificadorqr.pages.webview.WebViewData;
 import com.nativesos.verificadorqr.utility.Utility;
 
 import java.util.ArrayList;
@@ -33,12 +38,16 @@ public class History extends AppCompatActivity {
     TextView outsideTextView;
     TextView urlTextView;
 
+    Intent intent;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+
 
 
         consultarDatabase();
@@ -74,7 +83,7 @@ public class History extends AppCompatActivity {
                     insideTextView = (TextView) new TextView(getBaseContext());
                     outsideTextView = (TextView) new TextView(getBaseContext());
                     urlTextView = (TextView) new TextView(getBaseContext());
-
+                    urlTextView.setTextColor(0XFF0272F3);
 
                     contentRow = (TableRow) new TableRow(getBaseContext());
 
@@ -91,6 +100,7 @@ public class History extends AppCompatActivity {
                     contentRow.addView(addDataToTextView(inside, insideTextView));
                     contentRow.addView(addDataToTextView(outside, outsideTextView));
                     contentRow.addView(addDataToTextView(url, urlTextView));
+
 
                     listTabletLayout.addView(contentRow);
 
@@ -119,14 +129,34 @@ public class History extends AppCompatActivity {
         textView.setPadding(10,5,10,5);
         textView.setBackgroundResource(R.color.white);
         textView.setTextSize(9);
-        textView.setMaxLines(5);
+        textView.setMaxLines(2);
         textView.setWidth(150);
         textView.setHeight(70);
+        textView.setClickable(true);
         textView.setGravity(Gravity.CENTER);
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textView.setTextIsSelectable(true);
         textView.setGravity(Gravity.CENTER_VERTICAL);
         textView.setText(data);
+
+
+
+
+        if(data.contains(".")) {
+            textView.setTextSize(10);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(data));
+//                    startActivity(browserIntent);
+                    intent = new Intent(getBaseContext(), WebViewData.class);
+
+                    intent.putExtra(Utility.URL, data);
+
+                    startActivity(intent);
+                }
+            });
+        }
 
         return textView;
     }

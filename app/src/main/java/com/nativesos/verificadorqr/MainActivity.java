@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         // Esto es para que la orientacion de la pantalla siempre sea verticcal.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        emailLogin = (EditText) findViewById(R.id.emailLogin);
+        passwordLogin = (EditText) findViewById(R.id.passwordLogin);
+
 
         localInitialization();
 
@@ -56,7 +61,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(dashboard);
+                // Nombre de usuario y password por defecto
+                if(emailLogin.getText().toString().equals("SeguridadThomas") && passwordLogin.getText().toString().equals("123456")){
+                    startActivity(dashboard);
+                }else{
+                    Toast.makeText(getBaseContext(),"Credenciales Invalidas", Toast.LENGTH_LONG).show();
+                }
+
+
 
             }
         });

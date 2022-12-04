@@ -218,7 +218,7 @@ public class ScannerQr extends AppCompatActivity {
 
 
     public String getPdf() {
-        return pdf.replace("https://","");
+        return pdf;
     }
 
     public void setPdf(String pdf) {
