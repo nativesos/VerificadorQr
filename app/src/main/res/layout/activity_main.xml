@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -27,7 +28,9 @@
         android:layout_below="@+id/main_icon_login"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
+        android:backgroundTint="@color/black"
         android:hint="Correo:"
+        android:textColorHint="#787983"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textSize="20dp" />
@@ -39,6 +42,8 @@
         android:layout_below="@+id/emailLogin"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
+        android:textColorHint="#787983"
+        android:backgroundTint="@color/black"
         android:hint="Password:"
         android:inputType="textPassword"
         android:textColor="@color/black"
@@ -54,7 +59,8 @@
         android:layout_marginTop="10dp"
         android:text="@string/login_text"
         android:textColor="@color/white"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        app:backgroundTint="#77AF92" />
 
 
 </RelativeLayout>
